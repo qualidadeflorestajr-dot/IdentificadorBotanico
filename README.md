@@ -1,29 +1,27 @@
-# Árvores de Nazareno 🌳
+# Árvores de Nazareno
 
-Inventário arbóreo e educação ambiental de Nazareno – MG.
+Aplicação web responsiva e instalável (PWA) para inventário arbóreo e educação ambiental em Nazareno–MG.
 
-## Direção definida
-- Site e aplicativo: aplicação web responsiva instalável (PWA).
-- Administradores: cadastro/edição do inventário e moderação das sugestões.
-- População: consulta pública das fichas e envio de sugestões.
+## Recursos
+- Catálogo público com busca, filtro e fichas de árvores publicadas.
+- Formulário público de sugestões.
+- Login administrativo com Supabase Auth.
+- Painel restrito para cadastrar, editar, publicar/despublicar e excluir árvores.
+- Moderação de sugestões.
+- Cálculo automático do DAP quando o CAP é informado e o DAP fica vazio.
+- Layout responsivo para celular e computador.
 
-## Protótipo
-- Painel e formulário de árvores; dados botânicos, dendrométricos e fitossanitários.
-- Cálculo DAP = CAP ÷ π; busca, mapa, fichas públicas e QR Code.
-- Estrutura PWA e formulário de sugestões preparado para Supabase.
+## Configuração
+1. Preencha `config.js` com a Project URL e a Publishable key do Supabase. Nunca coloque `sb_secret_` ou `service_role` no navegador.
+2. No Supabase, abra SQL Editor e execute o conteúdo completo de `supabase-schema.sql`. O script pode ser executado novamente para atualizar políticas.
+3. No Supabase, abra Authentication > Users e crie o usuário da equipe (e-mail e senha).
+4. Copie o UUID do usuário criado. No SQL Editor, execute:
+   `update public.profiles set role = 'admin' where id = 'UUID-DO-USUARIO';`
+5. Publique o site em hospedagem HTTPS (por exemplo, GitHub Pages). O PWA requer HTTPS para instalação e service worker.
 
-## Limitações e segurança
-Ainda é um protótipo. O inventário existente usa armazenamento local e não é compartilhado entre aparelhos. O envio de sugestões só funciona após configurar Supabase e aplicar `supabase-schema.sql`. A autenticação administrativa e a migração do inventário para o banco on-line ainda precisam ser concluídas. Não usar oficialmente antes desses passos e dos testes de segurança. Nunca colocar a chave `service_role` no front-end; usar somente a chave pública anon com RLS corretamente configurado.
-
-## Configuração do backend
-1. Criar projeto Supabase.
-2. Executar `supabase-schema.sql` no SQL Editor.
-3. Copiar `config.example.js` para `config.js` e preencher URL e chave pública anon.
-4. Criar conta do administrador e promover o perfil manualmente, conforme comentário no SQL.
-5. Concluir autenticação administrativa, sincronização do inventário e armazenamento de fotos.
-
-## Publicação
-GitHub → Settings → Pages → Deploy from a branch → main → /(root). Publicar após configurar e testar permissões.
-
-## Tecnologias
-HTML, CSS, JavaScript, Leaflet/OpenStreetMap, QRCode.js e Supabase (backend em configuração).
+## Importante
+- Somente fichas com `is_published = true` aparecem no catálogo público.
+- O perfil criado automaticamente recebe papel `public`; a promoção para `admin` é manual e deve ser feita por pessoa autorizada.
+- Fotografias são cadastradas por URL pública em `photo_url`. Para upload direto de arquivos, configure um bucket privado/público no Supabase Storage e políticas próprias.
+- O projeto precisa ser publicado em HTTPS para login, QR codes compartilháveis e instalação como PWA funcionarem corretamente.
+- Não cadastre informações inventadas: use dados de campo verificados.
