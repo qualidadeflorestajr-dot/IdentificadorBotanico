@@ -16,7 +16,7 @@
 <body>
   <header class="topbar"><a class="brand" href="#"><span class="brand-mark">🌳</span><span><b>Árvores de Nazareno</b><small>Inventário arbóreo digital</small></span></a><button id="publicMode" class="button button-light" disabled title="Autenticação administrativa em configuração">Área administrativa em configuração</button></header>
   <main id="app">
-    <section id="adminView">
+    <section id="adminView" class="hidden">
       <section class="hero"><div><span class="eyebrow">PREFEITURA MUNICIPAL · MEIO AMBIENTE</span><h1>Conhecer para<br><em>preservar.</em></h1><p>Inventário e acompanhamento das árvores da Praça Central de Nazareno – MG.</p></div><div class="hero-tree" aria-hidden="true">🌳</div></section>
       <nav class="tabs" aria-label="Navegação"><button class="tab active" data-tab="dashboard">Visão geral</button><button class="tab" data-tab="inventory">Inventário</button><button class="tab" data-tab="map">Mapa</button></nav>
       <section id="dashboard" class="panel">
@@ -30,7 +30,7 @@
       </section>
       <section id="map" class="panel hidden"><div class="section-heading"><div><span class="eyebrow">GEORREFERENCIAMENTO</span><h2>Mapa das árvores</h2><p>Os pontos aparecem quando as coordenadas são cadastradas.</p></div></div><div id="treeMap"></div><p id="mapNotice" class="muted"></p></section>
     </section>
-    <section id="publicView" class="hidden">
+    <section id="publicView">
       <div class="public-banner"><span class="eyebrow">CIRCUITO DAS ÁRVORES · NAZARENO – MG</span><h1>Descubra a natureza<br>que vive <em>na praça.</em></h1><p>Conheça as árvores, suas histórias e sua importância para o ambiente urbano.</p></div>
       <div id="publicTree"></div>
       <div id="publicList" class="panel"><h2>Árvores cadastradas</h2><p class="muted">Selecione uma árvore para conhecer sua ficha.</p><div id="publicCards" class="tree-grid"></div></div>
