@@ -35,3 +35,26 @@ create policy "admins moderate suggestions" on public.suggestions for update to 
  using(exists(select 1 from public.profiles p where p.id=auth.uid() and p.role='admin'))
  with check(exists(select 1 from public.profiles p where p.id=auth.uid() and p.role='admin'));
 -- Depois de criar a conta autorizada, promover manualmente: update public.profiles set role='admin' where id='UUID_DO_USUARIO';
+
+-- Cada conta criada no Supabase recebe perfil público automaticamente.
+create or replace function public.handle_new_user()
+returns trigger
+language plpgsql
+security definer
+set search_path = ''
+as $$
+begin
+  insert into public.profiles (id, role)
+  values (new.id, 'public')
+  on conflict (id) do nothing;
+  return new;
+end;
+$$;
+drop trigger if exists on_auth_user_created on auth.users;
+create trigger on_auth_user_created
+after insert on auth.users
+for each row execute procedure public.handle_new_user();
+
+-- O usuário autenticado pode consultar somente o próprio perfil.
+create policy "users read own profile" on public.profiles
+for select to authenticated using (id = auth.uid());
