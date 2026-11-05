@@ -1,0 +1,13 @@
+{
+  "appId": "br.com.arvoresdenazareno.app",
+  "appName": "Árvores de Nazareno",
+  "webDir": "www",
+  "server": {
+    "url": "https://qualidadeflorestajr-dot.github.io/IdentificadorBotanico/",
+    "cleartext": false,
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": false
+  }
+}
