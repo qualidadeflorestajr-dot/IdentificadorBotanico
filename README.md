@@ -1,33 +1,29 @@
 # Árvores de Nazareno 🌳
 
-Aplicação inicial para o projeto **Árvores da Praça Central de Nazareno – MG**, baseada no documento de projeto fornecido.
+Inventário arbóreo e educação ambiental de Nazareno – MG.
 
-## O que já existe neste protótipo
+## Direção definida
+- Site e aplicativo: aplicação web responsiva instalável (PWA).
+- Administradores: cadastro/edição do inventário e moderação das sugestões.
+- População: consulta pública das fichas e envio de sugestões.
 
-- Painel administrativo com indicadores do inventário.
-- Cadastro e edição de árvores com os campos previstos no projeto.
-- Cálculo automático do DAP a partir do CAP (CAP ÷ π).
-- Registro fotográfico local.
-- Busca e filtro de árvores.
-- Mapa com pontos georreferenciados (Leaflet + OpenStreetMap).
-- Ficha pública individual por árvore.
-- Geração de QR Code apontando para a ficha.
-- Layout adaptado para celular e computador.
+## Protótipo
+- Painel e formulário de árvores; dados botânicos, dendrométricos e fitossanitários.
+- Cálculo DAP = CAP ÷ π; busca, mapa, fichas públicas e QR Code.
+- Estrutura PWA e formulário de sugestões preparado para Supabase.
 
-## Como executar
+## Limitações e segurança
+Ainda é um protótipo. O inventário existente usa armazenamento local e não é compartilhado entre aparelhos. O envio de sugestões só funciona após configurar Supabase e aplicar `supabase-schema.sql`. A autenticação administrativa e a migração do inventário para o banco on-line ainda precisam ser concluídas. Não usar oficialmente antes desses passos e dos testes de segurança. Nunca colocar a chave `service_role` no front-end; usar somente a chave pública anon com RLS corretamente configurado.
 
-Abra `index.html` em um navegador ou publique o conteúdo deste repositório pelo GitHub Pages (Settings → Pages → Deploy from a branch → main → /(root)).
+## Configuração do backend
+1. Criar projeto Supabase.
+2. Executar `supabase-schema.sql` no SQL Editor.
+3. Copiar `config.example.js` para `config.js` e preencher URL e chave pública anon.
+4. Criar conta do administrador e promover o perfil manualmente, conforme comentário no SQL.
+5. Concluir autenticação administrativa, sincronização do inventário e armazenamento de fotos.
 
-## Limitações importantes desta primeira versão
-
-Esta é uma **demonstração front-end**: os dados ficam no armazenamento local do navegador (`localStorage`). Portanto, não são compartilhados entre aparelhos, navegadores ou usuários e podem ser perdidos se os dados do navegador forem apagados. As fotografias também ficam armazenadas localmente.
-
-Para uso oficial pela Prefeitura e leitura pública dos QR Codes, a próxima etapa deverá integrar um banco de dados on-line, armazenamento de imagens, autenticação administrativa e hospedagem pública. Não inserir dados pessoais ou informações operacionais sensíveis nesta versão de demonstração.
-
-## Identificação
-
-Padrão de códigos: `NAZ-PRA-001`, `NAZ-PRA-002` etc. A identificação botânica deve permanecer como pendente quando não houver confirmação técnica.
+## Publicação
+GitHub → Settings → Pages → Deploy from a branch → main → /(root). Publicar após configurar e testar permissões.
 
 ## Tecnologias
-
-HTML, CSS e JavaScript; Leaflet/OpenStreetMap para mapa; QRCode.js para QR Codes.
+HTML, CSS, JavaScript, Leaflet/OpenStreetMap, QRCode.js e Supabase (backend em configuração).
