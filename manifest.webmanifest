@@ -1,1 +1,19 @@
-{"name":"Árvores de Nazareno","short_name":"Árvores Naz","description":"Inventário arbóreo e educação ambiental de Nazareno - MG.","lang":"pt-BR","start_url":"./","scope":"./","display":"standalone","background_color":"#f7f8f3","theme_color":"#174d37","icons":[]}
+{
+  "name": "Árvores de Nazareno",
+  "short_name": "Árvores Naz",
+  "description": "Inventário arbóreo e educação ambiental de Nazareno - MG.",
+  "lang": "pt-BR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f7f8f3",
+  "theme_color": "#174d37",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
