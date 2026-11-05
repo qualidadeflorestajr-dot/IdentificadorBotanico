@@ -23,3 +23,12 @@ window.makeQR=id=>{let t=trees.find(x=>x.id===id);if(!t)return;let url=new URL(l
 $('closeQr').onclick=()=>$('qrDialog').close();$('printQr').onclick=()=>window.print();$('search').oninput=renderTable;$('statusFilter').onchange=renderTable;
 $('publicMode').onclick=()=>{$('adminView').classList.add('hidden');$('publicView').classList.remove('hidden');$('publicTree').innerHTML='';$('publicList').classList.remove('hidden')};
 const params=new URLSearchParams(location.search);render();if(params.has('tree')&&trees.some(t=>t.id===params.get('tree')))showPublicTree(params.get('tree'));
+if ('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(e=>console.warn(e)));
+const suggestionForm=document.getElementById('suggestionForm');
+if(suggestionForm)suggestionForm.addEventListener('submit',async e=>{
+ e.preventDefault();const status=document.getElementById('suggestionStatus');const cfg=window.APP_CONFIG||{};
+ if(!cfg.supabaseUrl||!cfg.supabaseAnonKey){status.textContent='Envio ainda não ativado: o banco de dados on-line precisa ser configurado. Sua mensagem não foi enviada.';status.className='status-warning';return;}
+ const payload={tree_code:document.getElementById('suggestionTree').value.trim()||null,category:document.getElementById('suggestionType').value,message:document.getElementById('suggestionText').value.trim(),contact:document.getElementById('suggestionContact').value.trim()||null};
+ try{const r=await fetch(cfg.supabaseUrl.replace(/\\/$/,'')+'/rest/v1/suggestions',{method:'POST',headers:{'Content-Type':'application/json','apikey':cfg.supabaseAnonKey,'Authorization':'Bearer '+cfg.supabaseAnonKey,'Prefer':'return=minimal'},body:JSON.stringify(payload)});if(!r.ok)throw Error('HTTP '+r.status);suggestionForm.reset();status.textContent='Sugestão enviada. Obrigado por contribuir!';status.className='status-success';}
+ catch(err){status.textContent='Não foi possível enviar agora. Tente novamente mais tarde.';status.className='status-warning';}
+});
