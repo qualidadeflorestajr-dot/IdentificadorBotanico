@@ -1,0 +1,40 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+ njobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+      - name: Configurar Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Instalar dependências
+        run: npm install
+      - name: Gerar projeto Android
+        run: npx cap add android
+      - name: Sincronizar aplicativo
+        run: npx cap sync android
+      - name: Compilar APK
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+      - name: Disponibilizar APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: arvores-de-nazareno-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 30
