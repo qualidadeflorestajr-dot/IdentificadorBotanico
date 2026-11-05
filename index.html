@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#174d37">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="manifest.webmanifest">
   <meta name="description" content="Inventário arbóreo digital e educação ambiental de Nazareno, MG.">
   <title>Árvores de Nazareno</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +14,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="topbar"><a class="brand" href="#"><span class="brand-mark">🌳</span><span><b>Árvores de Nazareno</b><small>Inventário arbóreo digital</small></span></a><button id="publicMode" class="button button-light">Visualização pública</button></header>
+  <header class="topbar"><a class="brand" href="#"><span class="brand-mark">🌳</span><span><b>Árvores de Nazareno</b><small>Inventário arbóreo digital</small></span></a><button id="publicMode" class="button button-light" disabled title="Autenticação administrativa em configuração">Área administrativa em configuração</button></header>
   <main id="app">
     <section id="adminView">
       <section class="hero"><div><span class="eyebrow">PREFEITURA MUNICIPAL · MEIO AMBIENTE</span><h1>Conhecer para<br><em>preservar.</em></h1><p>Inventário e acompanhamento das árvores da Praça Central de Nazareno – MG.</p></div><div class="hero-tree" aria-hidden="true">🌳</div></section>
@@ -31,6 +34,7 @@
       <div class="public-banner"><span class="eyebrow">CIRCUITO DAS ÁRVORES · NAZARENO – MG</span><h1>Descubra a natureza<br>que vive <em>na praça.</em></h1><p>Conheça as árvores, suas histórias e sua importância para o ambiente urbano.</p></div>
       <div id="publicTree"></div>
       <div id="publicList" class="panel"><h2>Árvores cadastradas</h2><p class="muted">Selecione uma árvore para conhecer sua ficha.</p><div id="publicCards" class="tree-grid"></div></div>
+      <section class="suggestion-panel"><span class="eyebrow">PARTICIPE DO INVENTÁRIO</span><h2>Ajude a cuidar das árvores</h2><p>Envie sugestões de identificação, correções ou observações para análise da equipe responsável.</p><form id="suggestionForm" class="suggestion-form"><div class="form-grid"><label>Árvore relacionada (opcional)<input id="suggestionTree" placeholder="Ex.: NAZ-PRA-001"></label><label>Tipo de sugestão<select id="suggestionType" required><option value="">Selecione</option><option>Identificação botânica</option><option>Correção de informação</option><option>Condição da árvore</option><option>Localização</option><option>Outra observação</option></select></label><label class="full">Sua sugestão<textarea id="suggestionText" rows="4" required minlength="10" placeholder="Descreva sua contribuição..."></textarea></label><label>Contato (opcional)<input id="suggestionContact" maxlength="120" placeholder="E-mail ou telefone"></label></div><button class="button button-primary" type="submit">Enviar sugestão</button><p id="suggestionStatus" class="muted" role="status">Envio on-line será ativado após configurar o banco de dados.</p></form></section>
     </section>
   </main>
   <dialog id="treeDialog"><form id="treeForm" method="dialog"><div class="dialog-head"><div><span class="eyebrow">CADASTRO ARBÓREO</span><h2 id="formTitle">Nova árvore</h2></div><button type="button" class="icon-button" id="closeDialog" aria-label="Fechar">×</button></div><input type="hidden" id="treeId">
@@ -49,5 +53,5 @@
   </form></dialog>
   <dialog id="qrDialog"><div class="dialog-head"><div><span class="eyebrow">IDENTIFICAÇÃO</span><h2>QR Code da árvore</h2></div><button class="icon-button" id="closeQr">×</button></div><div id="qrContent" class="qr-content"></div><button id="printQr" class="button button-primary">Imprimir QR Code</button></dialog>
   <footer><span>🌿 <b>Árvores de Nazareno</b></span><span>Secretaria Municipal de Meio Ambiente · 2026</span></footer>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script><script src="app.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script><script src="config.js"></script><script src="app.js"></script>
 </body></html>
