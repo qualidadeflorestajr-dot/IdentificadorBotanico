@@ -26,3 +26,24 @@ dialog{border:1px solid #aebbb4;box-shadow:0 25px 90px #102c2180}
 .dialog-close{background:linear-gradient(145deg,#f7faf8,#cbd5cf);border:1px solid #c0cbc4}
 footer{background:linear-gradient(110deg,#142f28,#273b33 55%,#152d27);border-top:1px solid #82948a}
 @media(max-width:600px){.hero{background:radial-gradient(circle at 90% 20%,#42695b,#173c30 75%)}}
+
+
+/* Módulos do inventário ampliado */
+.admin-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.form-grid .full{grid-column:1/-1}
+.detail-qr{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:14px;margin:16px 0;border:1px solid #d6e0d9;border-radius:14px;background:#f5f8f5}
+.detail-qr small{font-weight:700;color:#315447}
+#qrCode{background:#fff;padding:8px;border-radius:8px;min-width:144px;min-height:144px}
+#qrCode img,#qrCode canvas{display:block;max-width:128px}
+.detail-map{width:100%;height:260px;margin:14px 0;border-radius:14px;overflow:hidden;background:#edf2ed}
+.detail-gallery{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 16px}
+.detail-gallery img{width:92px;height:76px;object-fit:cover;border-radius:9px;border:1px solid #d8e1da}
+.maintenance-area{margin-top:24px;padding-top:16px;border-top:1px solid #dce5de}
+.maintenance-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:14px;margin:12px 0;background:#f3f7f3;border-radius:12px}
+.maintenance-form label{display:flex;flex-direction:column;gap:5px;font-size:.85rem;font-weight:700}
+.maintenance-form input,.maintenance-form select,.maintenance-form textarea{width:100%;padding:10px;border:1px solid #cbd8ce;border-radius:8px;font:inherit}
+.maintenance-form .full{grid-column:1/-1}
+.maintenance-item{padding:12px 0;border-bottom:1px solid #e1e8e2}
+.maintenance-item span{float:right;color:#718078;font-size:.85rem}
+.maintenance-item p{margin:6px 0}
+@media(max-width:600px){.maintenance-form{grid-template-columns:1fr}.maintenance-form .full{grid-column:auto}.admin-tools{width:100%}.detail-map{height:220px}}
