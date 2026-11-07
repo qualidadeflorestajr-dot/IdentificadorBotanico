@@ -23,6 +23,8 @@ jobs:
           node-version: '20'
       - name: Instalar dependências
         run: npm install
+      - name: Preparar arquivos do aplicativo
+        run: npm run prepare:web
       - name: Gerar projeto Android
         run: npx cap add android
       - name: Sincronizar aplicativo
