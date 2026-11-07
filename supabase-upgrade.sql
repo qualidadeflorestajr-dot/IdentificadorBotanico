@@ -4,7 +4,10 @@ alter table public.trees
   add column if not exists survey_date date,
   add column if not exists responsible text,
   add column if not exists planting_date date,
-  add column if not exists photo_urls text[] not null default '{}';
+  add column if not exists photo_urls text[] not null default '{}',
+  add column if not exists photo_trunk_url text,
+  add column if not exists photo_canopy_url text,
+  add column if not exists photo_detail_url text;
 
 create table if not exists public.tree_maintenance (
   id uuid primary key default gen_random_uuid(),
