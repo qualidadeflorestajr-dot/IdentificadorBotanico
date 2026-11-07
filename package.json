@@ -6,7 +6,8 @@
     "dev": "npx --yes http-server . -p 4173 -c-1",
     "start": "npm run dev",
     "android": "cap open android",
-    "build:apk": "npx cap sync android && cd android && ./gradlew assembleDebug"
+    "build:apk": "npm run prepare:web && npx cap add android && npx cap sync android && cd android && ./gradlew assembleDebug",
+    "prepare:web": "mkdir -p www && cp index.html styles.css app.js config.js icon.svg www/ && cp manifest.webmanifest www/ 2>/dev/null || true"
   },
   "dependencies": {
     "@capacitor/core": "^7.4.3"
