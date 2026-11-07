@@ -1,3 +1,5 @@
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+if (!location.hash && !new URLSearchParams(location.search).has('tree')) window.scrollTo(0, 0);
 const cfg=window.APP_CONFIG||{};
 const $=id=>document.getElementById(id);
 const fields=['code','number','popular','scientific','family','origin','height','cap','dap','condition','health','pests','pruning','conflicts','lat','lng','photo','importance','fact','notes','site','surveyDate','responsible','plantingDate'];
